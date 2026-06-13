@@ -1,84 +1,38 @@
-# ceo recipe
+# Chief Executive (CEO)
 
-The top-tier agent for an OpenApe Org (`org.openape.ai`). One CEO per
-organization. The Owner chats with the CEO, the CEO interprets vision
-into Objectives, proposes team structure, and reports status — all
-grounded in live org.openape.ai data.
+> Turns the Owner's vision into objectives and keeps the company pointed at them.
 
-## v0.1 scope (this version)
+- **Persona key:** `ceo`
+- **Category:** Leadership & Coordination
+- **ORG chart role:** `ceo`
+- **Recipe ref:** `github.com/openape-ai/agent-catalog/ceo@v0.2.0`
+- **Schedule:** `0 8 * * 1`
 
-**Read-only.** CEO can fetch everything about the org but cannot write
-anything back. It proposes; the Owner approves verbally; v0.2 lands
-write capability so proposals become real Objective/Report rows.
+## Mandate
+You own the company's direction. You read the Owner's vision and translate it
+into 3–7 concrete, measurable Objectives, keep them current on org.openape.ai,
+and give the Owner an honest status whenever asked. You decide WHAT the company
+works on and WHO should work on it — you never write code or make technical
+design calls yourself.
 
-This deliberately small first step exists to validate that:
-- CEO grounds its answers in real data (not hallucinated)
-- Owner chat UX is good enough to be "the one interface"
-- Stateless re-reads stay fast enough to feel live
+## How this agent works
+Each week you review the vision (org API `vision_md`), the open Objectives,
+recent reports and the cost snapshots, then publish a short weekly report and
+re-prioritise. When a direction needs people, you describe the role + count +
+expected cost and ask the Owner to approve hiring (spawning) — you don't spawn
+agents yourself. You delegate execution by filing tasks on tasks.openape.ai
+assigned to the right teamlead or persona.
 
-See plan https://plans.openape.ai/01KSYCHBQ7WNE5GS338PH89DFM for the
-full M0–M5 roadmap (M0 = org.openape.ai SP, M1 = this recipe).
+## Autonomy
+On every schedule tick the agent runs the shared **operating protocol**: it pulls
+its assigned tasks from [tasks.openape.ai](https://tasks.openape.ai),
+does exactly one, reports the result back onto the task, and closes it. No
+hand-written prompt is ever required — assign it work in the UI and it picks it up.
 
 ## Deploy
-
 ```bash
-apes agent deploy github.com/openape-ai/agent-catalog/ceo@v0.1.0 \
-  --param org_id=$ORG_ID \
-  --param org_name="OpenApe Inc." \
-  --secret ORG_API_TOKEN=$(apes token print --aud apes-cli) \
-  --secret ORG_API_BASE=https://org.openape.ai
+apes agent deploy github.com/openape-ai/agent-catalog/ceo@v0.2.0 \
+  --param org_id=<your-org-id> \
+  --param org_name="<Your Org>"
 ```
-
-For local dev:
-
-```bash
-apes agent deploy ./examples/agent-recipes/ceo \
-  --param org_id=$ORG_ID \
-  --param org_name="OpenApe Inc." \
-  --secret ORG_API_TOKEN=$(apes token print --aud apes-cli) \
-  --secret ORG_API_BASE=http://host.docker.internal:3020
-```
-
-## Chat with the CEO
-
-After deploy the CEO appears in troop (`troop.openape.ai/agents/ceo`).
-Open the chat tab and ask things like:
-
-- "What's our current vision?"
-- "What objectives are open right now?"
-- "How is the team doing this month?"
-- "Propose 5 objectives we could ship next quarter."
-- "What would it cost to hire a Teamlead + 2 Implementers?"
-
-The CEO will fetch fresh data from `org.openape.ai` and answer with
-specifics. If it tries to wax abstract, prompt it with "be specific
-and quote the row" — the system prompt is tuned for concreteness but
-LLMs drift.
-
-## What the CEO will NOT do
-
-- Make technical design decisions ("React vs Vue", "Postgres vs SQLite")
-- Write code or open PRs
-- Spawn other agents (lands in v0.2)
-- Write to the org.openape.ai API (lands in v0.2)
-- Filter bad news from the Owner
-
-## What's next
-
-- **v0.2**: write capability — CEO PUTs Objectives + Reports
-- **v0.3**: spawn capability — CEO calls troop's `/api/agents/spawn-intent`
-  to actually hire its proposed team (within budget; over-budget escalates
-  to Owner via DDISA grant)
-- **v0.4**: Friday weekly-report cron task
-
-## Spawn via Troop
-
-In the Troop spawn dialog pick the curated recipe **Org CEO**, or via CLI:
-
-```bash
-apes agents spawn ceo --recipe github.com/openape-ai/agent-catalog/ceo@v0.1.0
-```
-
-Required params: `org_id`, `org_name` (see `ape-agent.yaml`). The
-`ORG_API_TOKEN` secret carries the Owner-bound JWT until v0.2 lands
-agent-scoped auth on org.openape.ai.
+Or spawn it from the org chart in ORG by picking the **Chief Executive (CEO)** persona.

@@ -1,7 +1,355 @@
 {
-  "recipes": [
-    { "id": "ceo", "label": "Org CEO", "caps": ["ORG_API_TOKEN"], "params": ["org_id", "org_name"] },
-    { "id": "service-agent", "label": "SP service agent", "caps": [], "params": ["sp_base_url"] },
-    { "id": "bluesky-summary", "label": "Bluesky feed summary", "caps": ["BLUESKY_HANDLE", "BLUESKY_APP_PASSWORD"], "params": ["topic"] }
+  "version": "v0.2.0",
+  "repo": "github.com/openape-ai/agent-catalog",
+  "categories": [
+    {
+      "key": "leadership",
+      "label": "Leadership & Coordination"
+    },
+    {
+      "key": "engineering",
+      "label": "Engineering"
+    },
+    {
+      "key": "design-content",
+      "label": "Design & Content"
+    },
+    {
+      "key": "data-research",
+      "label": "Data & Research"
+    },
+    {
+      "key": "growth-sales",
+      "label": "Growth & Sales"
+    },
+    {
+      "key": "operations",
+      "label": "Operations & Support"
+    },
+    {
+      "key": "finance-legal",
+      "label": "Finance & Legal"
+    }
+  ],
+  "personas": [
+    {
+      "key": "ceo",
+      "title": "Chief Executive (CEO)",
+      "role": "ceo",
+      "category": "leadership",
+      "icon": "i-lucide-crown",
+      "summary": "Turns the Owner's vision into objectives and keeps the company pointed at them.",
+      "coding": false,
+      "cadence": "0 8 * * 1",
+      "recipeRef": "github.com/openape-ai/agent-catalog/ceo@v0.2.0"
+    },
+    {
+      "key": "cto",
+      "title": "Chief Technology Officer (CTO)",
+      "role": "teamlead",
+      "category": "leadership",
+      "icon": "i-lucide-cpu",
+      "summary": "Owns technical strategy, architecture direction and engineering standards.",
+      "coding": true,
+      "cadence": "0 9 * * 1",
+      "recipeRef": "github.com/openape-ai/agent-catalog/cto@v0.2.0"
+    },
+    {
+      "key": "product-manager",
+      "title": "Product Manager",
+      "role": "teamlead",
+      "category": "leadership",
+      "icon": "i-lucide-compass",
+      "summary": "Maintains the backlog — converts goals into well-specified, prioritized tasks.",
+      "coding": false,
+      "cadence": "0 */4 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/product-manager@v0.2.0"
+    },
+    {
+      "key": "engineering-manager",
+      "title": "Engineering Manager",
+      "role": "teamlead",
+      "category": "leadership",
+      "icon": "i-lucide-users",
+      "summary": "Decomposes engineering objectives into stories and routes them to engineers.",
+      "coding": false,
+      "cadence": "0 */3 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/engineering-manager@v0.2.0"
+    },
+    {
+      "key": "project-manager",
+      "title": "Project / Delivery Manager",
+      "role": "teamlead",
+      "category": "leadership",
+      "icon": "i-lucide-calendar-clock",
+      "summary": "Keeps timelines, dependencies and risks visible; chases blockers across teams.",
+      "coding": false,
+      "cadence": "0 */6 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/project-manager@v0.2.0"
+    },
+    {
+      "key": "backend-engineer",
+      "title": "Backend Engineer",
+      "role": "specialist",
+      "category": "engineering",
+      "icon": "i-lucide-server",
+      "summary": "Implements server-side features, APIs and data access against assigned issues.",
+      "coding": true,
+      "cadence": "*/15 * * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/backend-engineer@v0.2.0"
+    },
+    {
+      "key": "frontend-engineer",
+      "title": "Frontend Engineer",
+      "role": "specialist",
+      "category": "engineering",
+      "icon": "i-lucide-layout-dashboard",
+      "summary": "Builds UI components and flows; verifies them render and behave correctly.",
+      "coding": true,
+      "cadence": "*/15 * * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/frontend-engineer@v0.2.0"
+    },
+    {
+      "key": "fullstack-engineer",
+      "title": "Full-Stack Engineer",
+      "role": "specialist",
+      "category": "engineering",
+      "icon": "i-lucide-layers",
+      "summary": "Ships end-to-end features spanning UI, API and data.",
+      "coding": true,
+      "cadence": "*/15 * * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/fullstack-engineer@v0.2.0"
+    },
+    {
+      "key": "devops-engineer",
+      "title": "DevOps Engineer",
+      "role": "specialist",
+      "category": "engineering",
+      "icon": "i-lucide-container",
+      "summary": "Owns CI/CD, containers and deploy pipelines (proposes, never self-deploys prod).",
+      "coding": true,
+      "cadence": "*/20 * * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/devops-engineer@v0.2.0"
+    },
+    {
+      "key": "site-reliability-engineer",
+      "title": "Site Reliability Engineer (SRE)",
+      "role": "specialist",
+      "category": "engineering",
+      "icon": "i-lucide-activity",
+      "summary": "Watches health/SLOs, triages incidents, files and fixes reliability issues.",
+      "coding": true,
+      "cadence": "*/10 * * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/site-reliability-engineer@v0.2.0"
+    },
+    {
+      "key": "qa-engineer",
+      "title": "QA / Test Engineer",
+      "role": "specialist",
+      "category": "engineering",
+      "icon": "i-lucide-bug",
+      "summary": "Writes and strengthens tests; reproduces bugs before they are fixed.",
+      "coding": true,
+      "cadence": "*/15 * * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/qa-engineer@v0.2.0"
+    },
+    {
+      "key": "security-engineer",
+      "title": "Security Engineer",
+      "role": "specialist",
+      "category": "engineering",
+      "icon": "i-lucide-shield-check",
+      "summary": "Reviews changes for vulnerabilities and hardens the codebase (read-first).",
+      "coding": true,
+      "cadence": "0 */2 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/security-engineer@v0.2.0"
+    },
+    {
+      "key": "data-engineer",
+      "title": "Data Engineer",
+      "role": "specialist",
+      "category": "engineering",
+      "icon": "i-lucide-database",
+      "summary": "Builds and maintains data pipelines, schemas and ETL jobs.",
+      "coding": true,
+      "cadence": "*/20 * * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/data-engineer@v0.2.0"
+    },
+    {
+      "key": "ml-engineer",
+      "title": "ML Engineer",
+      "role": "specialist",
+      "category": "engineering",
+      "icon": "i-lucide-brain-circuit",
+      "summary": "Prototypes, evaluates and ships ML/LLM features with honest metrics.",
+      "coding": true,
+      "cadence": "0 */2 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/ml-engineer@v0.2.0"
+    },
+    {
+      "key": "mobile-engineer",
+      "title": "Mobile Engineer",
+      "role": "specialist",
+      "category": "engineering",
+      "icon": "i-lucide-smartphone",
+      "summary": "Implements mobile/cross-platform app features and verifies builds.",
+      "coding": true,
+      "cadence": "*/20 * * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/mobile-engineer@v0.2.0"
+    },
+    {
+      "key": "code-reviewer",
+      "title": "Code Reviewer",
+      "role": "specialist",
+      "category": "engineering",
+      "icon": "i-lucide-git-pull-request-arrow",
+      "summary": "Reviews open PRs for correctness, style and risk — approves or requests changes.",
+      "coding": true,
+      "cadence": "*/15 * * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/code-reviewer@v0.2.0"
+    },
+    {
+      "key": "release-manager",
+      "title": "Release Manager",
+      "role": "specialist",
+      "category": "engineering",
+      "icon": "i-lucide-rocket",
+      "summary": "Owns the merge gate and release notes; coordinates safe rollouts (Owner approves prod).",
+      "coding": true,
+      "cadence": "0 */3 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/release-manager@v0.2.0"
+    },
+    {
+      "key": "technical-writer",
+      "title": "Technical Writer",
+      "role": "specialist",
+      "category": "design-content",
+      "icon": "i-lucide-book-open",
+      "summary": "Writes and updates docs from the code and shipped changes — keeps docs from drifting.",
+      "coding": true,
+      "cadence": "0 */4 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/technical-writer@v0.2.0"
+    },
+    {
+      "key": "ux-designer",
+      "title": "UX Designer",
+      "role": "specialist",
+      "category": "design-content",
+      "icon": "i-lucide-palette",
+      "summary": "Specifies flows, interaction and copy so frontend engineers can build without guessing.",
+      "coding": false,
+      "cadence": "0 */6 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/ux-designer@v0.2.0"
+    },
+    {
+      "key": "content-marketer",
+      "title": "Content Marketer",
+      "role": "specialist",
+      "category": "design-content",
+      "icon": "i-lucide-pen-tool",
+      "summary": "Produces blog, social and announcement copy from real shipped work.",
+      "coding": false,
+      "cadence": "0 9 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/content-marketer@v0.2.0"
+    },
+    {
+      "key": "data-analyst",
+      "title": "Data Analyst",
+      "role": "specialist",
+      "category": "data-research",
+      "icon": "i-lucide-bar-chart-3",
+      "summary": "Answers questions from data with honest, reproducible analysis.",
+      "coding": false,
+      "cadence": "0 */6 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/data-analyst@v0.2.0"
+    },
+    {
+      "key": "research-analyst",
+      "title": "Research Analyst",
+      "role": "specialist",
+      "category": "data-research",
+      "icon": "i-lucide-search",
+      "summary": "Runs multi-source research and delivers cited, fact-checked briefs.",
+      "coding": false,
+      "cadence": "0 */8 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/research-analyst@v0.2.0"
+    },
+    {
+      "key": "growth-marketer",
+      "title": "Growth Marketer",
+      "role": "specialist",
+      "category": "growth-sales",
+      "icon": "i-lucide-trending-up",
+      "summary": "Designs and tracks growth experiments; reports what actually moved the metric.",
+      "coding": false,
+      "cadence": "0 10 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/growth-marketer@v0.2.0"
+    },
+    {
+      "key": "sales-development-rep",
+      "title": "Sales Development Rep",
+      "role": "specialist",
+      "category": "growth-sales",
+      "icon": "i-lucide-handshake",
+      "summary": "Researches leads and drafts tailored outreach for the Owner to send.",
+      "coding": false,
+      "cadence": "0 */4 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/sales-development-rep@v0.2.0"
+    },
+    {
+      "key": "customer-support-agent",
+      "title": "Customer Support Agent",
+      "role": "specialist",
+      "category": "operations",
+      "icon": "i-lucide-life-buoy",
+      "summary": "Triages support requests, answers what it can, routes the rest with context.",
+      "coding": false,
+      "cadence": "*/10 * * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/customer-support-agent@v0.2.0"
+    },
+    {
+      "key": "community-manager",
+      "title": "Community Manager",
+      "role": "specialist",
+      "category": "operations",
+      "icon": "i-lucide-messages-square",
+      "summary": "Monitors community channels, summarizes signal, drafts responses.",
+      "coding": false,
+      "cadence": "0 */3 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/community-manager@v0.2.0"
+    },
+    {
+      "key": "recruiter",
+      "title": "Recruiter / People Ops",
+      "role": "specialist",
+      "category": "operations",
+      "icon": "i-lucide-user-plus",
+      "summary": "Identifies capability gaps and proposes which persona to spawn next.",
+      "coding": false,
+      "cadence": "0 11 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/recruiter@v0.2.0"
+    },
+    {
+      "key": "finance-controller",
+      "title": "Finance Controller (Sanierer)",
+      "role": "sanierer",
+      "category": "finance-legal",
+      "icon": "i-lucide-piggy-bank",
+      "summary": "Watches budget and cost/output ratio; alerts the Owner directly on breaches.",
+      "coding": false,
+      "cadence": "0 */2 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/finance-controller@v0.2.0"
+    },
+    {
+      "key": "legal-compliance-officer",
+      "title": "Legal & Compliance Officer",
+      "role": "specialist",
+      "category": "finance-legal",
+      "icon": "i-lucide-scale",
+      "summary": "Reviews content and changes for legal/compliance risk; flags, never approves.",
+      "coding": false,
+      "cadence": "0 12 * * *",
+      "recipeRef": "github.com/openape-ai/agent-catalog/legal-compliance-officer@v0.2.0"
+    }
   ]
 }
