@@ -57,7 +57,7 @@ params:
     required: false
     description: "Task team id to file follow-up tasks on (tasks.openape.ai team ULID)"
 schedules:
-  - cron: "0 7,12,17 * * *"
+  - cron: "0 */4 * * *"
     description: |
       Inbox triage: read the recent inbox, classify into ACTION / REPLY / FYI / WAIT / NOISE,
       and surface a compact digest with one-line suggestions. File a follow-up task for anything
