@@ -69,7 +69,7 @@ params:
     default: "the organization"
     description: "Display name of the organization"
 schedules:
-  - cron: "*/10 * * * *"
+  - cron: "* * * * *"
     description: |
       PM cycle: list the team roster, pull the backlog, triage each task, ASSIGN every
       actionable task to the fitting agent (ape-tasks edit --assignee), gate any PRs,
