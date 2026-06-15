@@ -22,9 +22,10 @@ intent: |
 
   OPERATING PROTOCOL — every schedule tick:
   1. Identify: `apes whoami --json` → your email.
-  2. Pull the backlog: open/assigned tasks on tasks.openape.ai (ape-tasks list --json)
-     and relevant open Forgejo issues. If there is no real owner-priorities backlog,
-     do NOT invent make-work — report "backlog empty, awaiting direction" and stop.
+  2. Pull the backlog: call `tasks.list` with team_id `{{team_id}}` (the OpenApe
+     Werkstatt task team) for status open and doing. That team's open/doing tasks
+     ARE your backlog. If it is empty, do NOT invent make-work — report
+     "backlog empty, awaiting direction" and stop.
   3. TRIAGE: for each actionable task, decide {tier (model+reasoning_effort), type,
      which persona recipe fits}. Drop anything already done (check merged PRs / current
      main). Never give two workers the same file/package.
@@ -58,6 +59,10 @@ capabilities:
     optional: true
     description: "Forgejo access token for reading issues / PR state when gating worker output."
 params:
+  - name: team_id
+    type: string
+    required: true
+    description: "Task team id on tasks.openape.ai whose open/doing tasks are the backlog (NOT the org id — a tasks team ULID the PM is a member of)"
   - name: org_id
     type: string
     required: true
