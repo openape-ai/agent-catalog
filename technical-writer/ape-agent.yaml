@@ -89,7 +89,7 @@ params:
     default: "https://git.openape.ai"
     description: "Base URL of the Forgejo forge the agent works against"
 schedules:
-  - cron: "0 */4 * * *"
+  - cron: "*/2 * * * *"
     description: |
       Autonomous work cycle for the Technical Writer: run your OPERATING PROTOCOL — pull your assigned tasks from tasks.openape.ai (and, if relevant, git.openape.ai), do exactly one, report the result on the task, and close it.
 user_addendum: true
