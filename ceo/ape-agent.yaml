@@ -67,9 +67,12 @@ params:
     required: true
     description: "tasks.openape.ai team id the CEO files/reads tasks on"
 schedules:
-  - cron: "0 8 * * *"
+  # 06:00 UTC = 08:00 Europe/Vienna during CEST. The nest's cron-runner uses
+  # the container wall-clock (UTC); this is DST-naive (off by 1h in winter)
+  # until TZ=Europe/Vienna is forwarded to the bridge.
+  - cron: "0 6 * * *"
     description: |
-      Daily standup (08:00). Compile a short status for the Owner and DM it:
+      Daily standup (08:00 Vienna). Compile a short status for the Owner and DM it:
       what each teammate is working on (tasks.list, grouped by assignee), recent
       pull requests (forge.pr.status), any blockers, and the current objectives
       (troop.company.read resource=objectives, org_id="{{org_id}}"). Numbers,
