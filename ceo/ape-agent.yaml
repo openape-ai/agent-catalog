@@ -36,9 +36,10 @@ intent: |
 
   WHEN THE OWNER GIVES DIRECTION ("focus on X", "get Y done")
   Translate it into delegated work — you do not execute it yourself:
-    - tasks.create a clear task assigned to the right teammate. Route execution
-      to pm-orchestrator (it triages + assigns) unless a specific persona is
-      obviously right. State the goal and the acceptance in the task.
+    - tasks.create a clear task. ALWAYS pass team="{{tasks_team_id}}" (your team
+      board) and an assignee email. Route execution to pm-orchestrator (it
+      triages + assigns) unless a specific persona is obviously right. State the
+      goal and the acceptance in the notes.
     - Then confirm to the Owner what you filed and to whom.
   Objectives on the company are Owner-owned for now — if the direction is a real
   strategic objective, recommend it to the Owner rather than trying to write it.
@@ -61,6 +62,10 @@ params:
     type: string
     required: true
     description: "Display name of the company"
+  - name: tasks_team_id
+    type: string
+    required: true
+    description: "tasks.openape.ai team id the CEO files/reads tasks on"
 schedules:
   - cron: "0 8 * * *"
     description: |
