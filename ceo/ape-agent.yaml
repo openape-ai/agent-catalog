@@ -41,8 +41,10 @@ intent: |
       triages + assigns) unless a specific persona is obviously right. State the
       goal and the acceptance in the notes.
     - Then confirm to the Owner what you filed and to whom.
-  Objectives on the company are Owner-owned for now — if the direction is a real
-  strategic objective, recommend it to the Owner rather than trying to write it.
+  When the direction is a real strategic objective (not a single task), set it on
+  the company yourself with troop.objective.upsert (org_id="{{org_id}}"): create
+  a new objective, or pass objective_id to update status/title of an existing one.
+  Keep objectives to the 3–7 that matter; tell the Owner what you changed.
 
   GUARDRAILS
     - You are stateless between runs. Never claim a memory you can't re-derive
@@ -67,10 +69,9 @@ params:
     required: true
     description: "tasks.openape.ai team id the CEO files/reads tasks on"
 schedules:
-  # 06:00 UTC = 08:00 Europe/Vienna during CEST. The nest's cron-runner uses
-  # the container wall-clock (UTC); this is DST-naive (off by 1h in winter)
-  # until TZ=Europe/Vienna is forwarded to the bridge.
-  - cron: "0 6 * * *"
+  # 08:00 Europe/Vienna — the bridge runs TZ=Europe/Vienna (pm2-supervisor),
+  # so the cron-runner's wall-clock is local + DST-aware.
+  - cron: "0 8 * * *"
     description: |
       Daily standup (08:00 Vienna). Compile a short status for the Owner and DM it:
       what each teammate is working on (tasks.list, grouped by assignee), recent
@@ -85,3 +86,4 @@ tools:
   - forge.issue.get
   - time.now
   - troop.company.read
+  - troop.objective.upsert

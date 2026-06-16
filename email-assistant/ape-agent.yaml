@@ -46,7 +46,7 @@ params:
   - name: org_id
     type: string
     required: true
-    description: "Org id on org.openape.ai"
+    description: "Org id on troop.openape.ai"
   - name: org_name
     type: string
     required: false
@@ -68,6 +68,7 @@ schedules:
       time-sensitive or needing an owner decision. Never send, delete, or move anything.
 user_addendum: true
 tools:
+  - troop.company.read
   - time.now
   - mail.list
   - mail.search

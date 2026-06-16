@@ -62,7 +62,7 @@ params:
   - name: org_id
     type: string
     required: true
-    description: "Org id on org.openape.ai"
+    description: "Org id on troop.openape.ai"
   - name: org_name
     type: string
     required: false
@@ -76,6 +76,7 @@ schedules:
       and escalate blocked/owner-decision items. Do not spawn workers, do not invent work.
 user_addendum: true
 tools:
+  - troop.company.read
   - time.now
   - tasks.list
   - tasks.create
