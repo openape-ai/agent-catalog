@@ -27,9 +27,11 @@ intent: |
   4. SURFACE a compact digest the owner can act on quickly: counts per bucket, then the ACTION +
      REPLY items with sender / subject / one-line-suggestion. For anything time-sensitive or
      needing a decision, create a follow-up task (`tasks.create`) on the team backlog so it
-     isn't lost. ALWAYS pass `dedup_key` = the mail's stable Message-ID (internetMessageId from
-     o365-cli/gmail-cli) so a re-run over the same inbox does NOT file the same item twice — the
-     backlog must not accumulate duplicates of the same mail.
+     isn't lost. ALWAYS pass `dedup_key` set to the EXACT value of the `message_id` field from
+     that mail's `mail.list`/`mail.search` entry (the stable per-message id the mail tool emits —
+     the field is literally named `message_id`, not `internetMessageId` and not `id`). Copy it
+     verbatim; never omit it or substitute the subject. This stops a re-run over the same inbox
+     from filing the same mail twice — the backlog must not accumulate duplicates.
   5. If the inbox is calm, say so briefly — don't manufacture work.
 
   STYLE
