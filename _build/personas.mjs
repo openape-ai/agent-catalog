@@ -41,9 +41,9 @@ schedule fires, run this loop. Your work comes entirely from your inboxes.
   4. Mark it in progress: \`ape-tasks status <id> doing\`.
   5. Do the real work with your tools (bash / http / file). Read the task title,
      notes and context_url for the full brief. Pull org context when useful:
-       curl -s https://org.openape.ai/api/orgs/{{org_id}}             (vision + budget)
-       curl -s https://org.openape.ai/api/orgs/{{org_id}}/objectives  (what matters now)
-       curl -s https://org.openape.ai/api/orgs/{{org_id}}/members     (who else is here)
+       curl -s https://troop.openape.ai/api/orgs/{{org_id}}             (vision + budget)
+       curl -s https://troop.openape.ai/api/orgs/{{org_id}}/objectives  (what matters now)
+       curl -s https://troop.openape.ai/api/orgs/{{org_id}}/members     (who else is here)
   6. Report back ON the task so the Owner sees it in the UI, then close it:
        printf '%s' "<result, decisions, links>" | ape-tasks edit <id> --notes-from-stdin
        ape-tasks done <id>
@@ -90,7 +90,7 @@ const FORGEJO_CAP = {
 }
 
 // Param definitions reused across personas.
-const P_ORG_ID = { name: 'org_id', type: 'string', required: true, description: 'UUID of the organization on org.openape.ai' }
+const P_ORG_ID = { name: 'org_id', type: 'string', required: true, description: 'UUID of the organization on troop.openape.ai' }
 const P_ORG_NAME = { name: 'org_name', type: 'string', required: true, description: 'Display name of the organization' }
 const P_FORGE_BASE = { name: 'forge_base', type: 'string', required: false, default: 'https://git.openape.ai', description: 'Base URL of the Forgejo forge the agent works against' }
 
@@ -103,7 +103,7 @@ export const PERSONAS = [
     icon: 'i-lucide-crown', cadence: '0 8 * * 1',
     summary: 'Turns the Owner\'s vision into objectives and keeps the company pointed at them.',
     mandate: `You own the company's direction. You read the Owner's vision and translate it
-into 3–7 concrete, measurable Objectives, keep them current on org.openape.ai,
+into 3–7 concrete, measurable Objectives, keep them current on troop.openape.ai,
 and give the Owner an honest status whenever asked. You decide WHAT the company
 works on and WHO should work on it — you never write code or make technical
 design calls yourself.`,
@@ -487,7 +487,7 @@ a HIGH-RISK task. You keep a short compliance status for the CEO.`,
 // Build the full recipe `intent` for a persona.
 export function buildIntent(p) {
   const header = `You are the ${p.title} of {{org_name}} — a virtual company the Owner runs on
-org.openape.ai (org id {{org_id}}). You are a real team member with your own
+troop.openape.ai (org id {{org_id}}). You are a real team member with your own
 DDISA identity, and you work continuously and autonomously alongside the rest of
 the team.`
 

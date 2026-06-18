@@ -4,8 +4,8 @@
 //   <key>/README.md        — human description of the persona
 //   README.md              — catalog index
 //   catalog.json           — machine index (used by docs / cross-checks)
-// and the ORG persona catalog (single source of truth for the spawn UI):
-//   <monorepo>/apps/openape-org/server/utils/persona-catalog.ts
+// and the persona catalog (single source of truth for the spawn UI):
+//   <monorepo>/apps/openape-troop/server/utils/persona-catalog.ts
 //
 // Run:  node _build/generate.mjs
 
@@ -20,7 +20,7 @@ import {
 const HERE = dirname(fileURLToPath(import.meta.url))
 const CATALOG_DIR = join(HERE, '..')
 const ORG_PERSONA_TS = join(
-  CATALOG_DIR, '..', 'openape-monorepo', 'apps', 'openape-org',
+  CATALOG_DIR, '..', 'openape-monorepo', 'apps', 'openape-troop',
   'server', 'utils', 'persona-catalog.ts',
 )
 
@@ -116,7 +116,7 @@ function rootReadme() {
 A catalog of ready-to-deploy **agent personas**. Each persona is a pinned
 recipe (\`ape-agent.yaml\`) that troop fetches, validates and deploys. Together
 they let an Owner assemble a whole virtual company in
-[ORG](https://org.openape.ai) — every member a real agent with its own DDISA
+[troop](https://troop.openape.ai/companies) — every member a real agent with its own DDISA
 identity that **polls its own work** from
 [tasks.openape.ai](https://tasks.openape.ai) and
 [git.openape.ai](https://git.openape.ai) and processes it autonomously. You

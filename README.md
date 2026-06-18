@@ -3,7 +3,7 @@
 A catalog of ready-to-deploy **agent personas**. Each persona is a pinned
 recipe (`ape-agent.yaml`) that troop fetches, validates and deploys. Together
 they let an Owner assemble a whole virtual company in
-[ORG](https://org.openape.ai) — every member a real agent with its own DDISA
+[troop](https://troop.openape.ai/companies) — every member a real agent with its own DDISA
 identity that **polls its own work** from
 [tasks.openape.ai](https://tasks.openape.ai) and
 [git.openape.ai](https://git.openape.ai) and processes it autonomously. You
