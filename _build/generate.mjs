@@ -5,7 +5,7 @@
 //   README.md              — catalog index
 //   catalog.json           — machine index (used by docs / cross-checks)
 // and the persona catalog (single source of truth for the spawn UI):
-//   <monorepo>/apps/openape-troop/server/utils/persona-catalog.ts
+//   <monorepo>/apps/openape-troop/shared/persona-catalog.ts
 //
 // Run:  node _build/generate.mjs
 
@@ -21,7 +21,7 @@ const HERE = dirname(fileURLToPath(import.meta.url))
 const CATALOG_DIR = join(HERE, '..')
 const ORG_PERSONA_TS = join(
   CATALOG_DIR, '..', 'openape-monorepo', 'apps', 'openape-troop',
-  'server', 'utils', 'persona-catalog.ts',
+  'shared', 'persona-catalog.ts',
 )
 
 function recipeRef(key) {
