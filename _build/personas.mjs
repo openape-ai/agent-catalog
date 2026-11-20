@@ -53,6 +53,7 @@ schedule fires, run this loop. Your work comes entirely from your inboxes.
   7. Stop after one task (or when your run budget is nearly up). The next
      schedule tick picks up the next item. Steady and correct beats fast and wrong.`
 
+// LEGACY: Forgejo and the Troop runtime are retired; see LEGACY_BANNER in generate.mjs.
 const CODE_WORKFLOW = `WORKING WITH CODE (git.openape.ai)
 When a task needs code, the source of truth is Forgejo at {{forge_base}}.
   - Find issues assigned to you across repos:
@@ -82,6 +83,7 @@ const GUARDRAILS = `GUARDRAILS
 // Capabilities every recipe shares: none are strictly required (agents use
 // their own device DDISA token via `apes`/`ape-tasks`). Coding personas add an
 // optional Forgejo token for pushing branches + opening PRs.
+// LEGACY: Forgejo and the Troop runtime are retired; see LEGACY_BANNER in generate.mjs.
 const FORGEJO_CAP = {
   env: 'FORGEJO_TOKEN',
   prefer: 'local',

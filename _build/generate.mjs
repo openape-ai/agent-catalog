@@ -76,9 +76,20 @@ function recipeYaml(p) {
   return out
 }
 
+// Shown at the top of every generated README: the runtime these recipes
+// target and their Forgejo code workflow no longer exist.
+const LEGACY_BANNER = `> [!WARNING]
+> **Legacy — do not deploy.** The Troop/Nest/ape-agent runtime these recipes
+> target was retired on 2026-10-15, and Forgejo (\`git.openape.ai\`) on
+> 2026-11-20. The Forgejo/\`FORGEJO_TOKEN\` code workflow below is historical
+> and non-functional. GitHub is the only Git host; a revival needs a GitHub
+> workflow (\`gh\` with \`GH_TOKEN\` from secrets.openape.ai).`
+
 function personaReadme(p) {
   const cat = CATEGORIES.find(c => c.key === p.category)?.label ?? p.category
   return `# ${p.title}
+
+${LEGACY_BANNER}
 
 > ${p.summary}
 
@@ -112,6 +123,8 @@ Or spawn it from the org chart in ORG by picking the **${p.title}** persona.
 
 function rootReadme() {
   let md = `# OpenApe Agent Catalog
+
+${LEGACY_BANNER}
 
 A catalog of ready-to-deploy **agent personas**. Each persona is a pinned
 recipe (\`ape-agent.yaml\`) that troop fetches, validates and deploys. Together
