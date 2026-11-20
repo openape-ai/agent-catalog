@@ -1,5 +1,12 @@
 # Engineering Manager
 
+> [!WARNING]
+> **Legacy — do not deploy.** The Troop/Nest/ape-agent runtime these recipes
+> target was retired on 2026-10-15, and Forgejo (`git.openape.ai`) on
+> 2026-11-20. The Forgejo/`FORGEJO_TOKEN` code workflow below is historical
+> and non-functional. GitHub is the only Git host; a revival needs a GitHub
+> workflow (`gh` with `GH_TOKEN` from secrets.openape.ai).
+
 > Decomposes engineering objectives into stories and routes them to engineers.
 
 - **Persona key:** `engineering-manager`
